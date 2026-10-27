@@ -133,6 +133,8 @@ nav.jump a:hover{border-color:var(--accent)}
 #jacket [data-zone]{cursor:pointer}
 #jacket [data-zone].active{filter:drop-shadow(0 0 7px rgba(255,255,255,.95))}
 .o{stroke:#0B0E11;stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+.insidenote{font-size:14px;color:var(--muted);margin:6px 0 0;text-align:center}
+body.night .insidenote{color:#9FB6BF}
 .nightnote{font-size:14px;color:#BFEFF7;margin:6px 0 0;text-align:center}
 .combo{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 16px;margin-top:10px}
 .combo-name{font-family:var(--display);font-weight:800;font-size:23px;line-height:1.1}
@@ -305,6 +307,7 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);text-align:center}
           <div class="seg" role="group" aria-label="Jacket view">
             <button id="viewFront" aria-pressed="true" data-i18n="front"></button>
             <button id="viewBack" aria-pressed="false" data-i18n="back"></button>
+            <button id="viewInside" aria-pressed="false" data-i18n="inside"></button>
           </div>
           <span class="viewnote" data-i18n="tip"></span>
         </div>
@@ -328,34 +331,73 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);text-align:center}
             <path data-zone="armor" class="o" d="M294,128 C280,118 260,120 254,132 L264,176 C278,180 296,176 304,166 Z"/>
             <path data-zone="armor" class="o" d="M70,226 C80,218 100,220 106,230 L100,270 C90,276 72,274 64,266 Z"/>
             <path data-zone="armor" class="o" d="M330,226 C320,218 300,220 294,230 L300,270 C310,276 328,274 336,266 Z"/>
-            <path data-zone="accent" class="o" d="M98,192 L114,184 L110,202 Z"/>
-            <path data-zone="accent" class="o" d="M302,192 L286,184 L290,202 Z"/>
+            <g fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="1" stroke-dasharray="3 3" pointer-events="none">
+              <path d="M108,134 C120,126 136,128 140,136 L132,170 C121,173 108,170 102,163 Z"/>
+              <path d="M292,134 C280,126 264,128 260,136 L268,170 C279,173 292,170 298,163 Z"/>
+              <path d="M74,232 C82,226 97,228 101,235 L96,265 C88,270 75,268 69,262 Z"/>
+              <path d="M326,232 C318,226 303,228 299,235 L304,265 C312,270 325,268 331,262 Z"/>
+            </g>
             <path data-zone="shell" class="o" d="M140,112 L166,106 Q200,122 234,106 L260,112 L270,208 L274,392 Q200,402 126,392 L130,208 Z"/>
-            <!-- PCM panels: upper chest + side torso -->
-            <path data-zone="pcm" class="o" d="M146,134 L186,128 L186,178 L150,188 Z"/>
-            <path data-zone="pcm" class="o" d="M254,134 L214,128 L214,178 L250,188 Z"/>
-            <path data-zone="pcm" class="o" d="M134,216 C150,212 158,220 160,232 L160,330 C150,336 140,334 132,330 Z"/>
-            <path data-zone="pcm" class="o" d="M266,216 C250,212 242,220 240,232 L240,330 C250,336 260,334 268,330 Z"/>
-            <g fill="none" stroke="#000" stroke-opacity=".22" stroke-width="1.5" pointer-events="none">
-              <path d="M152,146 l30,-4 M153,158 l30,-4 M154,170 l30,-4 M218,142 l30,4 M218,154 l30,4 M218,166 l30,4"/>
-              <path d="M138,240 h18 M138,262 h18 M138,284 h18 M138,306 h18 M244,240 h18 M244,262 h18 M244,284 h18 M244,306 h18"/>
-            </g>
-            <g pointer-events="none" fill="#fff" fill-opacity=".9" font-family="DM Sans, Arial, sans-serif" text-anchor="middle">
-              <text x="234" y="152" font-size="7.6" font-weight="700" letter-spacing=".1">AquaCool</text>
-              <text x="234" y="160" font-size="5.2" font-weight="500">by Aquaflask</text>
-            </g>
-            <path d="M156,204 L184,198 M244,204 L216,198" stroke="#0B0E11" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <!-- yoke piping -->
+            <path data-zone="accent" d="M141,140 Q170,147 196,149 L196,153 Q170,151 141,144 Z"/>
+            <path data-zone="accent" d="M259,140 Q230,147 204,149 L204,153 Q230,151 259,144 Z"/>
+            <!-- front intake vents (cooling layer peeks through) -->
+            <path data-zone="pcm" stroke="#0B0E11" stroke-width="1.5" d="M162,162 L169,161 L179,262 L172,263 Z"/>
+            <path d="M165.5,163 L175.5,261" stroke="#0B0E11" stroke-width="2" stroke-dasharray="2 2" pointer-events="none"/>
+            <rect data-zone="accent" class="o" x="159" y="152" width="11" height="13" rx="3" stroke-width="2"/>
+            <path data-zone="pcm" stroke="#0B0E11" stroke-width="1.5" d="M238,162 L231,161 L221,262 L228,263 Z"/>
+            <path d="M234.5,163 L224.5,261" stroke="#0B0E11" stroke-width="2" stroke-dasharray="2 2" pointer-events="none"/>
+            <rect data-zone="accent" class="o" x="230" y="152" width="11" height="13" rx="3" stroke-width="2"/>
+            <!-- hand pockets -->
+            <path d="M146,302 L178,294 M254,302 L222,294" stroke="#0B0E11" stroke-width="3" stroke-linecap="round" fill="none"/>
             <rect data-zone="accent" class="o" x="128" y="358" width="26" height="12" rx="3"/>
             <rect data-zone="accent" class="o" x="246" y="358" width="26" height="12" rx="3"/>
             <path d="M140,112 L166,106 Q200,122 234,106 L260,112 L270,208 L274,392 Q200,402 126,392 L130,208 Z" fill="url(#shade)" pointer-events="none"/>
             <path data-zone="shell" class="o" d="M164,92 Q200,104 236,92 L240,116 Q200,128 160,116 Z"/>
             <path data-zone="accent" class="o" d="M161,111 Q200,123 239,111 L240,116 Q200,128 160,116 Z"/>
+            <text x="200" y="107" font-family="DM Sans, Arial, sans-serif" font-size="6.5" font-weight="700" letter-spacing=".6" fill="#fff" fill-opacity=".85" text-anchor="middle" pointer-events="none">AQUACOOL</text>
             <rect class="o" x="196" y="118" width="8" height="278" rx="3" fill="#B9C3CA" pointer-events="none"/>
             <rect data-zone="accent" class="o" x="193" y="140" width="14" height="24" rx="5"/>
           </g>
 
-          <!-- ========== BACK ========== -->
           <g id="back" display="none">
+            <path data-zone="sleeves" class="o" d="M140,112 C104,116 86,134 78,170 L48,318 L94,326 L126,206 Z"/>
+            <path data-zone="sleeves" class="o" d="M260,112 C296,116 314,134 322,170 L352,318 L306,326 L274,206 Z"/>
+            <path data-zone="accent" class="o" d="M48,318 L94,326 L90,350 L43,342 Z"/>
+            <path data-zone="accent" class="o" d="M352,318 L306,326 L310,350 L357,342 Z"/>
+            <path data-zone="armor" class="o" d="M106,128 C120,118 140,120 146,132 L136,176 C122,180 104,176 96,166 Z"/>
+            <path data-zone="armor" class="o" d="M294,128 C280,118 260,120 254,132 L264,176 C278,180 296,176 304,166 Z"/>
+            <path data-zone="armor" class="o" d="M70,226 C80,218 100,220 106,230 L100,270 C90,276 72,274 64,266 Z"/>
+            <path data-zone="armor" class="o" d="M330,226 C320,218 300,220 294,230 L300,270 C310,276 328,274 336,266 Z"/>
+            <g fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="1" stroke-dasharray="3 3" pointer-events="none">
+              <path d="M108,134 C120,126 136,128 140,136 L132,170 C121,173 108,170 102,163 Z"/>
+              <path d="M292,134 C280,126 264,128 260,136 L268,170 C279,173 292,170 298,163 Z"/>
+              <path d="M74,232 C82,226 97,228 101,235 L96,265 C88,270 75,268 69,262 Z"/>
+              <path d="M326,232 C318,226 303,228 299,235 L304,265 C312,270 325,268 331,262 Z"/>
+            </g>
+            <path data-zone="shell" class="o" d="M140,112 L166,98 Q200,92 234,98 L260,112 L270,208 L274,392 Q200,402 126,392 L130,208 Z"/>
+            <path d="M200,182 V394" stroke="#000" stroke-opacity=".3" stroke-width="2" pointer-events="none"/>
+            <!-- yoke piping -->
+            <path data-zone="accent" d="M136,166 Q200,180 264,166 L264,171 Q200,185 136,171 Z"/>
+            <!-- logo -->
+            <g pointer-events="none" fill="#fff" fill-opacity=".88" font-family="DM Sans, Arial, sans-serif" text-anchor="middle">
+              <text x="200" y="140" font-size="11" font-weight="700" letter-spacing=".8">AQUACOOL</text>
+              <text x="200" y="151" font-size="6.5" font-weight="500">by Aquaflask</text>
+            </g>
+            <!-- rear exhaust vents -->
+            <path data-zone="pcm" stroke="#0B0E11" stroke-width="1.5" d="M149,216 h7 v100 h-7 Z"/>
+            <path d="M152.5,218 V314" stroke="#0B0E11" stroke-width="2" stroke-dasharray="2 2" pointer-events="none"/>
+            <rect data-zone="accent" class="o" x="147" y="206" width="11" height="13" rx="3" stroke-width="2"/>
+            <path data-zone="pcm" stroke="#0B0E11" stroke-width="1.5" d="M244,216 h7 v100 h-7 Z"/>
+            <path d="M247.5,218 V314" stroke="#0B0E11" stroke-width="2" stroke-dasharray="2 2" pointer-events="none"/>
+            <rect data-zone="accent" class="o" x="242" y="206" width="11" height="13" rx="3" stroke-width="2"/>
+            <rect data-zone="accent" class="o" x="128" y="358" width="26" height="12" rx="3"/>
+            <rect data-zone="accent" class="o" x="246" y="358" width="26" height="12" rx="3"/>
+            <path d="M140,112 L166,98 Q200,92 234,98 L260,112 L270,208 L274,392 Q200,402 126,392 L130,208 Z" fill="url(#shade)" pointer-events="none"/>
+            <path data-zone="shell" class="o" d="M166,84 Q200,78 234,84 L236,104 Q200,98 164,104 Z"/>
+          </g>
+
+          <g id="inside" display="none">
             <path data-zone="sleeves" class="o" d="M140,112 C104,116 86,134 78,170 L48,318 L94,326 L126,206 Z"/>
             <path data-zone="sleeves" class="o" d="M260,112 C296,116 314,134 322,170 L352,318 L306,326 L274,206 Z"/>
             <path data-zone="accent" class="o" d="M48,318 L94,326 L90,350 L43,342 Z"/>
@@ -395,6 +437,7 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);text-align:center}
         </svg>
           <svg id="bottle" class="bt" viewBox="-6 -40 120 280" role="img" aria-label="Matching bottle"></svg>
         </div>
+        <p class="insidenote" id="insideNote" data-i18n="insideNote" hidden></p>
         <p class="nightnote" id="nightNote" data-i18n="nightNote" hidden></p>
         <div class="combo">
           <div>
@@ -683,7 +726,8 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);text-align:center}
 const T = {
 en:{
   concept:"<strong>Student concept.</strong> Aquacool is a proposed brand extension made for a marketing class project. It is not an official Aquaflask product or website.",
-  day:"Day", night:"Night", front:"Front", back:"Back",
+  day:"Day", night:"Night", front:"Front", back:"Back", inside:"Inside",
+  insideNote:"Inside view: the cooling layers hidden under the PU leather.",
   tabBuild:"Design your jacket", tabAbout:"About Aquacool",
   lnDesign:"Colors", readyBuild:"Ready build", customBuild:"Custom colors (+₱200)",
   navProduct:"Product", navDesign:"Design", navDeals:"Deals", navBooths:"Find us",
@@ -700,8 +744,8 @@ en:{
   L4t:"Moisture-wicking PET mesh lining", L4d:"Breathable and comfortable against your skin. Pulls sweat away so the jacket doesn't stick.",
   featGel:"Removable gel pockets", featGelD:"Two gel packs sit on your upper back, where heat builds up most.",
   gel1:"Chill the packs in the fridge or freezer.", gel2:"Slide them into the back pockets.", gel3:"Swap in a fresh pair on long rides.",
-  featPcm:"PCM cooling panels", featPcmD:"On the upper chest, sides and back, away from the armor zones, so you stay cool without losing protection.",
-  featVent:"Rear zipper vents", featVentD:"Unzip the two back vents to let warm, humid air escape while you ride.",
+  featPcm:"PCM cooling panels", featPcmD:"Hidden under the PU leather on the chest, sides and back, away from the armor, so you stay cool without losing protection.",
+  featVent:"Zippered vents", featVentD:"Two front vents let cool air in while you ride. Two back vents let warm, humid air out.",
   featArmor:"Shoulder and elbow armor", featArmorD:"Impact protection where riders need it most, built into the jacket.",
   featReflect:"Reflective trim", featReflectD:"Trim, shoulder marks and vents catch headlights after dark. Switch to Night at the top to see it.",
   cmpTitle:"See the difference", cmpSub:"Drag the slider to see how warm it gets inside each jacket the longer you ride in the midday sun.",
@@ -724,7 +768,7 @@ en:{
   tabClassic:"Classic & dark", tabBold:"Bright & bold",
   s2:"Change a part (optional)", s2sub:"Choose a part, then tap a color. Custom colors add ₱200.",
   groupDark:"Classic darks", groupBright:"Signature brights",
-  shuffle:"Surprise me", reset:"Start over", backNote:"(shown on the back view)",
+  shuffle:"Surprise me", reset:"Start over", backNote:"(shown in Inside view)",
   s3:"Pick your size", s3sub:"Tap your size. Not sure? Use the size guide.",
   guideOpen:"Find my size", guideClose:"Hide size guide",
   height:"Height (cm)", chest:"Chest (cm)", chestTip:"Measure around the widest part of your chest.",
@@ -760,10 +804,10 @@ en:{
   zone_shell:"PU leather body", zone_sleeves:"Sleeves", zone_pcm:"Cooling panels", zone_gel:"Gel pockets", zone_armor:"Armor pads", zone_accent:"Trim & zips",
   hint_shell:"PU leather outer shell. Lightweight and easy to wipe clean, with zipper vents for airflow.",
   hint_sleeves:"PU leather sleeves lined with moisture-wicking PET mesh that stays comfortable on long rides.",
-  hint_pcm:"PCM thermal panels on the chest, sides and back soak up extra body heat.",
-  hint_gel:"Two removable gel pockets on the upper back. Chill them in the fridge, then slip them in.",
+  hint_pcm:"PCM cooling panels sit hidden inside the jacket. You'll see a peek of this color through the zipper vents.",
+  hint_gel:"Two removable gel packs in the back lining. Chill them in the fridge, then slip them in.",
   hint_armor:"Shoulder and elbow armor for impact protection.",
-  hint_accent:"Collar trim, cuffs, shoulder marks, waist tabs and back zipper vents. Reflective at night.",
+  hint_accent:"Collar trim, piping, zipper pulls, cuffs and waist tabs. Reflective at night.",
   sub:"{shell} leather · {pcm} cooling panels · size {size}", subBottle:" · {c} {s} {st}",
   priceNote:"{t} · proposed price", custom:"Custom: {a} & {b}",
   toastLoaded:"{n} loaded. Change any part, or skip ahead to deals.", toastRandom:"New random build. Tap any part to adjust it.",
@@ -790,7 +834,8 @@ en:{
 },
 fil:{
   concept:"<strong>Konsepto ng estudyante.</strong> Ang Aquacool ay isang proposed brand extension para sa isang marketing class project. Hindi ito opisyal na produkto o website ng Aquaflask.",
-  day:"Araw", night:"Gabi", front:"Harap", back:"Likod",
+  day:"Araw", night:"Gabi", front:"Harap", back:"Likod", inside:"Loob",
+  insideNote:"Loob ng jacket: ang mga cooling layer na nakatago sa ilalim ng PU leather.",
   tabBuild:"Idisenyo ang jacket mo", tabAbout:"Tungkol sa Aquacool",
   lnDesign:"Kulay", readyBuild:"Ready build", customBuild:"Custom na kulay (+₱200)",
   navProduct:"Produkto", navDesign:"Disenyo", navDeals:"Deals", navBooths:"Hanapin kami",
@@ -807,8 +852,8 @@ fil:{
   L4t:"Moisture-wicking PET mesh lining", L4d:"Presko at komportable sa balat. Hinihigop ang pawis para hindi dumikit ang jacket.",
   featGel:"Removable gel pockets", featGelD:"Dalawang gel pack sa itaas ng likod, kung saan pinakamainit.",
   gel1:"Palamigin ang packs sa ref o freezer.", gel2:"Isingit sa mga bulsa sa likod.", gel3:"Palitan ng bago sa long rides.",
-  featPcm:"PCM cooling panels", featPcmD:"Nasa itaas ng dibdib, gilid at likod, malayo sa armor, kaya malamig ka nang hindi nababawasan ang proteksyon.",
-  featVent:"Rear zipper vents", featVentD:"Buksan ang dalawang vent sa likod para lumabas ang mainit at maalinsangang hangin habang nagra-ride.",
+  featPcm:"PCM cooling panels", featPcmD:"Nakatago sa ilalim ng PU leather sa dibdib, gilid at likod, malayo sa armor, kaya malamig ka nang hindi nababawasan ang proteksyon.",
+  featVent:"Zippered vents", featVentD:"Pumapasok ang malamig na hangin sa dalawang vent sa harap habang nagra-ride. Lumalabas ang mainit at maalinsangang hangin sa dalawang vent sa likod.",
   featArmor:"Armor sa balikat at siko", featArmorD:"Proteksyon sa impact kung saan pinakakailangan ng rider, nakabaon sa jacket.",
   featReflect:"Reflective trim", featReflectD:"Tumatama ang ilaw ng headlight sa trim, shoulder marks at vents kapag gabi. I-click ang Gabi sa itaas para makita.",
   cmpTitle:"Tingnan ang pagkakaiba", cmpSub:"I-drag ang slider para makita kung gaano kainit sa loob ng bawat jacket habang tumatagal ang ride mo sa tanghaling-tapat.",
@@ -831,7 +876,7 @@ fil:{
   tabClassic:"Classic at dark", tabBold:"Makulay at bold",
   s2:"Palitan ang parte (optional)", s2sub:"Pumili ng parte, tapos i-tap ang kulay. Dagdag ₱200 ang custom na kulay.",
   groupDark:"Mga dark na kulay", groupBright:"Mga matingkad na kulay",
-  shuffle:"Bahala ka na", reset:"Ulitin mula simula", backNote:"(makikita sa likod)",
+  shuffle:"Bahala ka na", reset:"Ulitin mula simula", backNote:"(makikita sa Loob na view)",
   s3:"Piliin ang size mo", s3sub:"I-tap ang size mo. Hindi sigurado? Gamitin ang size guide.",
   guideOpen:"Hanapin ang size ko", guideClose:"Itago ang size guide",
   height:"Tangkad (cm)", chest:"Sukat ng dibdib (cm)", chestTip:"Sukatin ang pinakamalapad na bahagi ng dibdib mo.",
@@ -867,10 +912,10 @@ fil:{
   zone_shell:"PU leather na katawan", zone_sleeves:"Manggas", zone_pcm:"Cooling panels", zone_gel:"Gel pockets", zone_armor:"Armor pads", zone_accent:"Trim at zipper",
   hint_shell:"PU leather na outer shell. Magaan at madaling punasan, may zipper vents para pumasok ang hangin.",
   hint_sleeves:"PU leather na manggas na may moisture-wicking PET mesh lining, komportable kahit long ride.",
-  hint_pcm:"Ang PCM thermal panels sa dibdib, gilid at likod ay sumisipsip ng sobrang init ng katawan.",
-  hint_gel:"Dalawang removable gel pockets sa itaas ng likod. Palamigin sa ref, tapos isingit.",
+  hint_pcm:"Nakatago sa loob ng jacket ang PCM cooling panels. Makikita mo nang kaunti ang kulay na ito sa zipper vents.",
+  hint_gel:"Dalawang removable gel pack sa lining ng likod. Palamigin sa ref, tapos isingit.",
   hint_armor:"Armor sa balikat at siko para proteksyon sa impact.",
-  hint_accent:"Collar trim, cuffs, shoulder marks, waist tabs at back zipper vents. Reflective sa gabi.",
+  hint_accent:"Collar trim, piping, zipper pulls, cuffs at waist tabs. Reflective sa gabi.",
   sub:"{shell} na leather · {pcm} na cooling panels · size {size}", subBottle:" · {c} na {st}, {s}",
   priceNote:"{t} · proposed na presyo", custom:"Custom: {a} at {b}",
   toastLoaded:"Na-load ang {n}. Palitan ang kahit anong parte, o dumiretso sa deals.", toastRandom:"Bagong random build. I-tap ang kahit anong parte para baguhin.",
@@ -910,7 +955,7 @@ const BRIGHTS = [
   ["Bubblegum","#FF8AC6"],["Coral","#FF6F61"],["Tangerine","#FF9F3F"],["Sunshine","#FFD84A"],["Lime","#B6E35A"],["Cloud","#F5F7FA"]
 ];
 const HEX = Object.fromEntries(DARKS.concat(BRIGHTS));
-const ZONES = [["shell","front"],["sleeves","front"],["pcm","front"],["gel","back"],["armor","front"],["accent","front"]];
+const ZONES = [["shell","front"],["sleeves","front"],["pcm","front"],["gel","inside"],["armor","front"],["accent","front"]];
 const zoneName = k => t("zone_"+k);
 const PRESETS = [
   {g:"classic",n:"Original Black",d:"d_original",s:{shell:"Black",sleeves:"Black",pcm:"Aqua",gel:"Cobalt",armor:"Black",accent:"Aqua"}},
@@ -1041,8 +1086,7 @@ function cloneJacket(v){
   c.removeAttribute("id");
   c.querySelector("defs")?.remove();
   c.querySelectorAll(".active").forEach(e=>e.classList.remove("active"));
-  c.querySelector("#front").setAttribute("display", v==="front"?"inline":"none");
-  c.querySelector("#back").setAttribute("display", v==="back"?"inline":"none");
+  ["front","back","inside"].forEach(n=>c.querySelector("#"+n).setAttribute("display", v===n?"inline":"none"));
   c.querySelectorAll("[id]").forEach(e=>e.removeAttribute("id"));
   c.setAttribute("aria-label", `Aquacool jacket, ${v} view`);
   return c;
@@ -1087,9 +1131,9 @@ $("layerSvg").addEventListener("click",e=>{const g=e.target.closest(".slab"); if
 // ================= VIEW / MODE / LANGUAGE =================
 function setView(v){
   view=v;
-  $("front").setAttribute("display", v==="front" ? "inline" : "none");
-  $("back").setAttribute("display", v==="back" ? "inline" : "none");
-  $("viewFront").setAttribute("aria-pressed", v==="front"); $("viewBack").setAttribute("aria-pressed", v==="back");
+  ["front","back","inside"].forEach(n=>$(n).setAttribute("display", v===n ? "inline" : "none"));
+  $("viewFront").setAttribute("aria-pressed", v==="front"); $("viewBack").setAttribute("aria-pressed", v==="back"); $("viewInside").setAttribute("aria-pressed", v==="inside");
+  $("insideNote").hidden = v!=="inside";
 }
 let night=false;
 try{ night = window.matchMedia("(prefers-color-scheme: dark)").matches; }catch(e){}
@@ -1126,7 +1170,7 @@ function render(){
   document.querySelectorAll(".tab[data-g]").forEach(x=>x.setAttribute("aria-pressed", x.dataset.g===group));
   $("zones").innerHTML = ZONES.map(([k])=>`<button class="zone" data-k="${k}" aria-pressed="${k===active}"><i style="background:${HEX[state[k]]}"></i>${zoneName(k)}</button>`).join("");
   const z = ZONES.find(z=>z[0]===active);
-  $("zoneHint").innerHTML = `<strong>${zoneName(active)}:</strong> ${t("hint_"+active)}${z[1]==="back"?` <em>${t("backNote")}</em>`:""}`;
+  $("zoneHint").innerHTML = `<strong>${zoneName(active)}:</strong> ${t("hint_"+active)}${z[1]==="inside"?` <em>${t("backNote")}</em>`:""}`;
   $("swDark").innerHTML = swatchHTML(DARKS);
   $("swBright").innerHTML = swatchHTML(BRIGHTS);
   $("sizes").innerHTML = SIZES.map(([s])=>`<button class="tab" data-size="${s}" aria-pressed="${s===size}">${s}</button>`).join("");
@@ -1152,7 +1196,7 @@ function toast(msg, ms=4500){
 $("toast").addEventListener("click",()=>{$("toast").hidden=true;});
 function pickZone(k){
   active=k;
-  if(ZONES.find(z=>z[0]===k)[1]==="back") setView("back");
+  if(ZONES.find(z=>z[0]===k)[1]==="inside") setView("inside");
   render();
 }
 function loadPreset(name){
@@ -1162,6 +1206,7 @@ function loadPreset(name){
 // ================= EVENTS: builder =================
 $("viewFront").addEventListener("click",()=>setView("front"));
 $("viewBack").addEventListener("click",()=>setView("back"));
+$("viewInside").addEventListener("click",()=>setView("inside"));
 $("modeDay").addEventListener("click",()=>setNight(false));
 $("modeNight").addEventListener("click",()=>setNight(true));
 $("langEn").addEventListener("click",()=>setLang("en"));
@@ -1316,7 +1361,7 @@ function svgToImage(svgEl, v){
   const c=svgEl.cloneNode(true);
   c.querySelectorAll(".o").forEach(el=>{el.setAttribute("stroke","#0B0E11");el.setAttribute("stroke-width","3");el.setAttribute("stroke-linejoin","round");el.setAttribute("stroke-linecap","round");});
   c.querySelectorAll(".active").forEach(el=>el.classList.remove("active"));
-  if(v){ c.querySelector("#front").setAttribute("display",v==="front"?"inline":"none"); c.querySelector("#back").setAttribute("display",v==="back"?"inline":"none"); }
+  if(v){ ["front","back","inside"].forEach(n=>c.querySelector("#"+n).setAttribute("display",v===n?"inline":"none")); }
   c.removeAttribute("style");
   c.setAttribute("xmlns","http://www.w3.org/2000/svg");
   c.setAttribute("width","800"); c.setAttribute("height", String(Math.round(800*c.viewBox.baseVal.height/c.viewBox.baseVal.width)));
