@@ -41,6 +41,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .maintabs{display:flex;background:var(--surface);border:1.5px solid var(--line);border-radius:999px;padding:4px;gap:4px}
 .maintabs button{font:inherit;font-size:16px;font-weight:700;border:none;background:transparent;color:var(--ink);padding:10px 20px;border-radius:999px;cursor:pointer}
 .maintabs button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink)}
+.maintabs .short{display:none}
+@media (max-width:600px){.maintabs .full{display:none}.maintabs .short{display:inline}}
 @media (max-width:600px){.tabbar .logo{flex-basis:100%}.maintabs{width:100%}.maintabs button{flex:1;padding:10px 8px;font-size:15px}}
 .sec.first,.hero.first{margin-top:28px}
 /* top bar + nav */
@@ -133,8 +135,6 @@ nav.jump a:hover{border-color:var(--accent)}
 #jacket [data-zone]{cursor:pointer}
 #jacket [data-zone].active{filter:drop-shadow(0 0 7px rgba(255,255,255,.95))}
 .o{stroke:#0B0E11;stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
-.insidenote{font-size:14px;color:var(--muted);margin:6px 0 0;text-align:center}
-body.night .insidenote{color:#9FB6BF}
 .nightnote{font-size:14px;color:#BFEFF7;margin:6px 0 0;text-align:center}
 .combo{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 16px;margin-top:10px}
 .combo-name{font-family:var(--display);font-weight:800;font-size:23px;line-height:1.1}
@@ -238,6 +238,56 @@ table.chart tr.hit td{background:var(--soft);font-weight:700}
 button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .empty{font-size:14px;color:var(--muted)}
 
+/* word of mouth */
+.quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:860px){.quotes{grid-template-columns:1fr}}
+.quote{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:10px;align-content:start;min-width:0}
+.quote blockquote{margin:0;font-family:var(--display);font-weight:500;font-size:19px;line-height:1.35;text-wrap:pretty}
+.quote figcaption{font-size:14px;color:var(--muted)}
+/* ride and try */
+.rat{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:22px max(16px,2.4vw);display:grid;gap:18px;margin-bottom:8px}
+.rat-head h3{font-family:var(--display);font-weight:800;font-size:clamp(24px,3.4vw,32px);margin:0;text-wrap:balance}
+.rat-tag{margin:4px 0 0;font-family:var(--display);font-weight:800;font-size:18px;color:var(--accent)}
+.rat-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:14px;align-items:start}
+@media (max-width:860px){.rat-grid{grid-template-columns:1fr}}
+.events{display:grid;gap:12px}
+.zones-card{background:var(--soft);border-radius:var(--r);padding:18px}
+.zones-card h4,.reg-head h4{font-family:var(--display);font-size:19px;margin:0 0 8px}
+.zlist{margin:0;padding-left:22px;display:grid;gap:8px}
+.zlist li{font-size:15px;color:var(--muted)}
+.zlist strong{color:var(--ink);display:block}
+.regform{border:2px dashed var(--line);border-radius:var(--r);padding:18px;display:grid;gap:12px}
+.reg-head p{margin:0;color:var(--muted);font-size:15px}
+.regform .check{font-size:15px}
+.regform .result{font-size:15px;color:var(--ink)}
+/* booths */
+.booths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+@media (max-width:860px){.booths{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.booths{grid-template-columns:1fr}}
+.booth{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:6px;align-content:start;min-width:0}
+.booth.next{border:2px solid var(--accent)}
+.booth .when{font-family:var(--display);font-weight:800;font-size:19px;font-variant-numeric:tabular-nums}
+.booth .where{font-weight:700}
+.booth .spot{font-size:14px;color:var(--muted)}
+.status{justify-self:start;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:2px 9px;background:var(--soft);color:var(--muted)}
+.status.next,.status.now{background:var(--accent);color:var(--accent-ink)}
+.booth .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.booth .tags span{font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:2px 8px}
+.booth a{font-size:14px;color:var(--accent);font-weight:700;margin-top:4px}
+.buy-head{margin-top:40px}
+.buy-head h3{font-family:var(--display);font-weight:800;font-size:clamp(24px,3.4vw,32px);margin:0;text-wrap:balance}
+.channels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
+@media (max-width:980px){.channels{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.channels{grid-template-columns:1fr}}
+.channel{background:var(--soft);border-radius:var(--r);padding:18px;display:grid;gap:8px;align-content:start;min-width:0}
+.channel.feature{background:var(--surface);border:2px solid var(--accent)}
+.channel h4{font-family:var(--display);font-size:19px;margin:0;text-wrap:balance}
+.channel p{margin:0;color:var(--muted);font-size:15px}
+.channel .tip{font-size:13.5px;color:var(--ink);font-weight:500}
+.channel .btn{justify-self:start;margin-top:4px}
+.status.soon{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.status.later{background:transparent;color:var(--muted);border:1px dashed var(--line)}
+
 /* buy bar, toast, modal */
 .buybar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(0,0,0,.08);padding:10px max(16px, env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px, env(safe-area-inset-left,0px));transform:translateY(110%);transition:transform .3s}
 .buybar.show{transform:none}
@@ -288,8 +338,8 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);text-align:center}
   <div class="tabbar">
     <span class="logo">Aquacool <small>by Aquaflask</small></span>
     <div class="maintabs" role="tablist" aria-label="Site sections">
-      <button role="tab" id="tab-build" aria-controls="panel-build" aria-selected="true" data-tab="build" data-i18n="tabBuild"></button>
-      <button role="tab" id="tab-about" aria-controls="panel-about" aria-selected="false" data-tab="about" data-i18n="tabAbout"></button>
+      <button role="tab" id="tab-build" aria-controls="panel-build" aria-selected="true" data-tab="build"><span class="full" data-i18n="tabBuild"></span><span class="short" data-i18n="tabBuildS"></span></button>
+      <button role="tab" id="tab-about" aria-controls="panel-about" aria-selected="false" data-tab="about"><span class="full" data-i18n="tabAbout"></span><span class="short" data-i18n="tabAboutS"></span></button>
     </div>
   </div>
 
@@ -307,7 +357,6 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);text-align:center}
           <div class="seg" role="group" aria-label="Jacket view">
             <button id="viewFront" aria-pressed="true" data-i18n="front"></button>
             <button id="viewBack" aria-pressed="false" data-i18n="back"></button>
-            <button id="viewInside" aria-pressed="false" data-i18n="inside"></button>
           </div>
           <span class="viewnote" data-i18n="tip"></span>
         </div>
@@ -331,73 +380,34 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);text-align:center}
             <path data-zone="armor" class="o" d="M294,128 C280,118 260,120 254,132 L264,176 C278,180 296,176 304,166 Z"/>
             <path data-zone="armor" class="o" d="M70,226 C80,218 100,220 106,230 L100,270 C90,276 72,274 64,266 Z"/>
             <path data-zone="armor" class="o" d="M330,226 C320,218 300,220 294,230 L300,270 C310,276 328,274 336,266 Z"/>
-            <g fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="1" stroke-dasharray="3 3" pointer-events="none">
-              <path d="M108,134 C120,126 136,128 140,136 L132,170 C121,173 108,170 102,163 Z"/>
-              <path d="M292,134 C280,126 264,128 260,136 L268,170 C279,173 292,170 298,163 Z"/>
-              <path d="M74,232 C82,226 97,228 101,235 L96,265 C88,270 75,268 69,262 Z"/>
-              <path d="M326,232 C318,226 303,228 299,235 L304,265 C312,270 325,268 331,262 Z"/>
-            </g>
+            <path data-zone="accent" class="o" d="M98,192 L114,184 L110,202 Z"/>
+            <path data-zone="accent" class="o" d="M302,192 L286,184 L290,202 Z"/>
             <path data-zone="shell" class="o" d="M140,112 L166,106 Q200,122 234,106 L260,112 L270,208 L274,392 Q200,402 126,392 L130,208 Z"/>
-            <!-- yoke piping -->
-            <path data-zone="accent" d="M141,140 Q170,147 196,149 L196,153 Q170,151 141,144 Z"/>
-            <path data-zone="accent" d="M259,140 Q230,147 204,149 L204,153 Q230,151 259,144 Z"/>
-            <!-- front intake vents (cooling layer peeks through) -->
-            <path data-zone="pcm" stroke="#0B0E11" stroke-width="1.5" d="M162,162 L169,161 L179,262 L172,263 Z"/>
-            <path d="M165.5,163 L175.5,261" stroke="#0B0E11" stroke-width="2" stroke-dasharray="2 2" pointer-events="none"/>
-            <rect data-zone="accent" class="o" x="159" y="152" width="11" height="13" rx="3" stroke-width="2"/>
-            <path data-zone="pcm" stroke="#0B0E11" stroke-width="1.5" d="M238,162 L231,161 L221,262 L228,263 Z"/>
-            <path d="M234.5,163 L224.5,261" stroke="#0B0E11" stroke-width="2" stroke-dasharray="2 2" pointer-events="none"/>
-            <rect data-zone="accent" class="o" x="230" y="152" width="11" height="13" rx="3" stroke-width="2"/>
-            <!-- hand pockets -->
-            <path d="M146,302 L178,294 M254,302 L222,294" stroke="#0B0E11" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <!-- PCM panels: upper chest + side torso -->
+            <path data-zone="pcm" class="o" d="M146,134 L186,128 L186,178 L150,188 Z"/>
+            <path data-zone="pcm" class="o" d="M254,134 L214,128 L214,178 L250,188 Z"/>
+            <path data-zone="pcm" class="o" d="M134,216 C150,212 158,220 160,232 L160,330 C150,336 140,334 132,330 Z"/>
+            <path data-zone="pcm" class="o" d="M266,216 C250,212 242,220 240,232 L240,330 C250,336 260,334 268,330 Z"/>
+            <g fill="none" stroke="#000" stroke-opacity=".22" stroke-width="1.5" pointer-events="none">
+              <path d="M152,146 l30,-4 M153,158 l30,-4 M154,170 l30,-4 M218,142 l30,4 M218,154 l30,4 M218,166 l30,4"/>
+              <path d="M138,240 h18 M138,262 h18 M138,284 h18 M138,306 h18 M244,240 h18 M244,262 h18 M244,284 h18 M244,306 h18"/>
+            </g>
+            <g pointer-events="none" fill="#fff" fill-opacity=".9" font-family="DM Sans, Arial, sans-serif" text-anchor="middle">
+              <text x="234" y="152" font-size="7.6" font-weight="700" letter-spacing=".1">AquaCool</text>
+              <text x="234" y="160" font-size="5.2" font-weight="500">by Aquaflask</text>
+            </g>
+            <path d="M156,204 L184,198 M244,204 L216,198" stroke="#0B0E11" stroke-width="3" stroke-linecap="round" fill="none"/>
             <rect data-zone="accent" class="o" x="128" y="358" width="26" height="12" rx="3"/>
             <rect data-zone="accent" class="o" x="246" y="358" width="26" height="12" rx="3"/>
             <path d="M140,112 L166,106 Q200,122 234,106 L260,112 L270,208 L274,392 Q200,402 126,392 L130,208 Z" fill="url(#shade)" pointer-events="none"/>
             <path data-zone="shell" class="o" d="M164,92 Q200,104 236,92 L240,116 Q200,128 160,116 Z"/>
             <path data-zone="accent" class="o" d="M161,111 Q200,123 239,111 L240,116 Q200,128 160,116 Z"/>
-            <text x="200" y="107" font-family="DM Sans, Arial, sans-serif" font-size="6.5" font-weight="700" letter-spacing=".6" fill="#fff" fill-opacity=".85" text-anchor="middle" pointer-events="none">AQUACOOL</text>
             <rect class="o" x="196" y="118" width="8" height="278" rx="3" fill="#B9C3CA" pointer-events="none"/>
             <rect data-zone="accent" class="o" x="193" y="140" width="14" height="24" rx="5"/>
           </g>
 
+          <!-- ========== BACK ========== -->
           <g id="back" display="none">
-            <path data-zone="sleeves" class="o" d="M140,112 C104,116 86,134 78,170 L48,318 L94,326 L126,206 Z"/>
-            <path data-zone="sleeves" class="o" d="M260,112 C296,116 314,134 322,170 L352,318 L306,326 L274,206 Z"/>
-            <path data-zone="accent" class="o" d="M48,318 L94,326 L90,350 L43,342 Z"/>
-            <path data-zone="accent" class="o" d="M352,318 L306,326 L310,350 L357,342 Z"/>
-            <path data-zone="armor" class="o" d="M106,128 C120,118 140,120 146,132 L136,176 C122,180 104,176 96,166 Z"/>
-            <path data-zone="armor" class="o" d="M294,128 C280,118 260,120 254,132 L264,176 C278,180 296,176 304,166 Z"/>
-            <path data-zone="armor" class="o" d="M70,226 C80,218 100,220 106,230 L100,270 C90,276 72,274 64,266 Z"/>
-            <path data-zone="armor" class="o" d="M330,226 C320,218 300,220 294,230 L300,270 C310,276 328,274 336,266 Z"/>
-            <g fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="1" stroke-dasharray="3 3" pointer-events="none">
-              <path d="M108,134 C120,126 136,128 140,136 L132,170 C121,173 108,170 102,163 Z"/>
-              <path d="M292,134 C280,126 264,128 260,136 L268,170 C279,173 292,170 298,163 Z"/>
-              <path d="M74,232 C82,226 97,228 101,235 L96,265 C88,270 75,268 69,262 Z"/>
-              <path d="M326,232 C318,226 303,228 299,235 L304,265 C312,270 325,268 331,262 Z"/>
-            </g>
-            <path data-zone="shell" class="o" d="M140,112 L166,98 Q200,92 234,98 L260,112 L270,208 L274,392 Q200,402 126,392 L130,208 Z"/>
-            <path d="M200,182 V394" stroke="#000" stroke-opacity=".3" stroke-width="2" pointer-events="none"/>
-            <!-- yoke piping -->
-            <path data-zone="accent" d="M136,166 Q200,180 264,166 L264,171 Q200,185 136,171 Z"/>
-            <!-- logo -->
-            <g pointer-events="none" fill="#fff" fill-opacity=".88" font-family="DM Sans, Arial, sans-serif" text-anchor="middle">
-              <text x="200" y="140" font-size="11" font-weight="700" letter-spacing=".8">AQUACOOL</text>
-              <text x="200" y="151" font-size="6.5" font-weight="500">by Aquaflask</text>
-            </g>
-            <!-- rear exhaust vents -->
-            <path data-zone="pcm" stroke="#0B0E11" stroke-width="1.5" d="M149,216 h7 v100 h-7 Z"/>
-            <path d="M152.5,218 V314" stroke="#0B0E11" stroke-width="2" stroke-dasharray="2 2" pointer-events="none"/>
-            <rect data-zone="accent" class="o" x="147" y="206" width="11" height="13" rx="3" stroke-width="2"/>
-            <path data-zone="pcm" stroke="#0B0E11" stroke-width="1.5" d="M244,216 h7 v100 h-7 Z"/>
-            <path d="M247.5,218 V314" stroke="#0B0E11" stroke-width="2" stroke-dasharray="2 2" pointer-events="none"/>
-            <rect data-zone="accent" class="o" x="242" y="206" width="11" height="13" rx="3" stroke-width="2"/>
-            <rect data-zone="accent" class="o" x="128" y="358" width="26" height="12" rx="3"/>
-            <rect data-zone="accent" class="o" x="246" y="358" width="26" height="12" rx="3"/>
-            <path d="M140,112 L166,98 Q200,92 234,98 L260,112 L270,208 L274,392 Q200,402 126,392 L130,208 Z" fill="url(#shade)" pointer-events="none"/>
-            <path data-zone="shell" class="o" d="M166,84 Q200,78 234,84 L236,104 Q200,98 164,104 Z"/>
-          </g>
-
-          <g id="inside" display="none">
             <path data-zone="sleeves" class="o" d="M140,112 C104,116 86,134 78,170 L48,318 L94,326 L126,206 Z"/>
             <path data-zone="sleeves" class="o" d="M260,112 C296,116 314,134 322,170 L352,318 L306,326 L274,206 Z"/>
             <path data-zone="accent" class="o" d="M48,318 L94,326 L90,350 L43,342 Z"/>
@@ -437,7 +447,6 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);text-align:center}
         </svg>
           <svg id="bottle" class="bt" viewBox="-6 -40 120 280" role="img" aria-label="Matching bottle"></svg>
         </div>
-        <p class="insidenote" id="insideNote" data-i18n="insideNote" hidden></p>
         <p class="nightnote" id="nightNote" data-i18n="nightNote" hidden></p>
         <div class="combo">
           <div>
@@ -643,6 +652,20 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);text-align:center}
     </div>
   </section>
 
+  <!-- ============ WORD OF MOUTH ============ -->
+  <section class="sec" id="riders">
+    <div class="sec-head">
+      <p class="eyebrow" data-i18n="womEyebrow"></p>
+      <h2 data-i18n="womTitle"></h2>
+      <p class="sub" data-i18n="womSub"></p>
+    </div>
+    <div class="quotes">
+      <figure class="quote"><span class="status soon" data-i18n="sampleTag"></span><blockquote data-i18n="q1t"></blockquote><figcaption data-i18n="q1w"></figcaption></figure>
+      <figure class="quote"><span class="status soon" data-i18n="sampleTag"></span><blockquote data-i18n="q2t"></blockquote><figcaption data-i18n="q2w"></figcaption></figure>
+      <figure class="quote"><span class="status soon" data-i18n="sampleTag"></span><blockquote data-i18n="q3t"></blockquote><figcaption data-i18n="q3w"></figcaption></figure>
+    </div>
+  </section>
+
   <!-- ============ CAMPAIGN NOTES (instructor) ============ -->
   <details class="notes">
     <summary>Campaign notes and rationale</summary>
@@ -650,7 +673,7 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);text-align:center}
       <div class="card">
         <span class="tag">Execution</span>
         <h3>Digital marketing: an interactive product site</h3>
-        <p>The site has two tabs. <strong>Design your jacket</strong> is the main feature: riders pick Aquaflask colors, find their size, choose a bundle and buy. <strong>About Aquacool</strong> tells the brand story: how the cooling layers work and the heat comparison.</p>
+        <p>The site has two tabs. <strong>Design your jacket</strong> is the main feature: riders pick Aquaflask colors, find their size, choose a bundle and buy. <strong>About Aquacool</strong> tells the brand story: how the cooling layers work, the heat comparison, and rider word of mouth.</p>
       </div>
       <div class="card">
         <span class="tag">Message</span>
@@ -670,8 +693,10 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);text-align:center}
           <li><strong>Interest (product):</strong> the four-layer cross-section, feature cards and the heat slider explain the technology and prove the benefit visually.</li>
           <li><strong>Desire (design):</strong> riders build a jacket in Aquaflask colors. The quiz, classic dark builds and size guide make it easy for every age group, and people value what they help create.</li>
           <li><strong>Action (deals):</strong> bundle tiers with visible savings, a live order summary and a Buy now button that follows the rider down the page.</li>
+          <li><strong>Distribution (Place):</strong> pre-orders on the Aquacool website (the only channel for custom colors), the official Aquaflask website and its official Shopee and Lazada stores, and selected Aquaflask stores at launch, then partner motorcycle gear shops. Online reaches riders where they research and buy on payday; Aquaflask stores use existing foot traffic and the bottle bundle; moto shops put Aquacool next to Duhan and Komine.</li>
+          <li><strong>Event marketing: Ride and Try ("Feel the difference. Beat the heat."):</strong> booths at motorcycle conventions with a try-on area, product comparison, demo area, Cooling Challenge and supervised test rides, turning an unfamiliar benefit into something riders feel. The website supports it with a word-of-mouth section for vlogger and rider feedback. KPIs: trial registrations, earned media reach and mentions, early-access sign-ups, and cooling satisfaction ratings.</li>
           <li><strong>Material choice:</strong> PU leather keeps Aquacool at an accessible price, is lighter and easier to clean than cowhide, and holds bright Aquaflask colors well, matching the parent brand's "affordable quality" position.</li>
-          <li><strong>Pricing:</strong> the team's ₱2,800–3,000 range becomes ₱2,800 for ready builds and ₱3,000 for custom colors. The small premium for personalization keeps the entry price low while rewarding riders who use the main feature.</li>
+          <li><strong>Pricing:</strong> ₱2,999 for every jacket, ready build or custom colors. Charm pricing keeps it under the ₱3,000 mark, and charging the same for custom colors makes the main feature feel like a free upgrade. Bundles pair the jacket with Aquaflask: the <strong>Cooling Duo</strong> (jacket + matching bottle, ₱3,799) links the new product to the one riders already own, and the Cool Season Bundle adds a spare pair of gel packs (₱4,199).</li>
           <li><strong>Accessibility:</strong> the English/Filipino toggle and Night view (showing the reflective trim) speak to the rider's real language and commute.</li>
           <li><strong>Word of mouth:</strong> the downloadable build card and share caption with #StayCoolStayFresh turn customers into promoters in rider groups.</li>
         </ul>
@@ -680,8 +705,8 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);text-align:center}
         <span class="tag">Where it fits in the customer journey</span>
         <ol>
           <li><strong>Awareness:</strong> "Beyond the Bottle" teaser ads point to this site.</li>
-          <li><strong>Introduction:</strong> rider influencers share their own build cards.</li>
-          <li><strong>Trial:</strong> rider community events let people try the jacket on.</li>
+          <li><strong>Introduction:</strong> moto-vloggers review the jacket after Ride and Try test rides, and riders share their build cards.</li>
+          <li><strong>Trial:</strong> Ride and Try booths at motorcycle conventions (try-on, Cooling Challenge, supervised test ride).</li>
           <li><strong>Conversion:</strong> pre-orders and jacket + Aquaflask bundles through the Buy now flow.</li>
           <li><strong>Retention:</strong> replacement gel packs offered in the colors of the rider's build.</li>
         </ol>
@@ -726,14 +751,13 @@ footer{margin-top:28px;font-size:13px;color:var(--muted);text-align:center}
 const T = {
 en:{
   concept:"<strong>Student concept.</strong> Aquacool is a proposed brand extension made for a marketing class project. It is not an official Aquaflask product or website.",
-  day:"Day", night:"Night", front:"Front", back:"Back", inside:"Inside",
-  insideNote:"Inside view: the cooling layers hidden under the PU leather.",
-  tabBuild:"Design your jacket", tabAbout:"About Aquacool",
-  lnDesign:"Colors", readyBuild:"Ready build", customBuild:"Custom colors (+₱200)",
+  day:"Day", night:"Night", front:"Front", back:"Back",
+  tabBuild:"Design your jacket", tabAbout:"About Aquacool", tabEvents:"Events & Stores", tabBuildS:"Design", tabAboutS:"About", tabEventsS:"Events",
+  lnDesign:"Colors", readyBuild:"Ready build", customBuild:"Custom colors",
   navProduct:"Product", navDesign:"Design", navDeals:"Deals", navBooths:"Find us",
   heroEyebrow:"New from Aquaflask (concept)",
   heroLede:"We keep your drinks cool. Now it's your turn. Aquacool is a PU leather riding jacket with built-in cooling, made for hot Philippine commutes.",
-  fact1:"PU leather shell", fact2:"PCM cooling panels", fact3:"Removable gel packs", fact4:"From ₱2,800",
+  fact1:"PU leather shell", fact2:"PCM cooling panels", fact3:"Removable gel packs", fact4:"₱2,999",
   ctaDesign:"Design yours", ctaBuy:"Buy now",
   heroCap:"Shown: <strong>{n}</strong>. Tap the jacket to customize it.",
   prodEyebrow:"The product", prodTitle:"Four layers of cool",
@@ -744,31 +768,31 @@ en:{
   L4t:"Moisture-wicking PET mesh lining", L4d:"Breathable and comfortable against your skin. Pulls sweat away so the jacket doesn't stick.",
   featGel:"Removable gel pockets", featGelD:"Two gel packs sit on your upper back, where heat builds up most.",
   gel1:"Chill the packs in the fridge or freezer.", gel2:"Slide them into the back pockets.", gel3:"Swap in a fresh pair on long rides.",
-  featPcm:"PCM cooling panels", featPcmD:"Hidden under the PU leather on the chest, sides and back, away from the armor, so you stay cool without losing protection.",
-  featVent:"Zippered vents", featVentD:"Two front vents let cool air in while you ride. Two back vents let warm, humid air out.",
+  featPcm:"PCM cooling panels", featPcmD:"On the upper chest, sides and back, away from the armor zones, so you stay cool without losing protection.",
+  featVent:"Rear zipper vents", featVentD:"Unzip the two back vents to let warm, humid air escape while you ride.",
   featArmor:"Shoulder and elbow armor", featArmorD:"Impact protection where riders need it most, built into the jacket.",
   featReflect:"Reflective trim", featReflectD:"Trim, shoulder marks and vents catch headlights after dark. Switch to Night at the top to see it.",
-  cmpTitle:"See the difference", cmpSub:"Drag the slider to see how warm it gets inside each jacket the longer you ride in the midday sun.",
+  cmpTitle:"Feel the difference", cmpSub:"Drag the slider to see how warm it gets inside each jacket the longer you ride in the midday sun.",
   regular:"Regular leather jacket", timeLabel:"Time riding in the sun:", mins:"{m} minutes", min1:"1 minute",
   diff:"Aquacool stays {d}°C cooler", diff0:"Both start the same. Now start riding.", cool:"Cool", hot:"Hot",
   fine:"Illustrative concept figures based on how PCM panels and gel packs absorb heat. Not lab test results.",
   desEyebrow:"Design", desTitle:"Make it yours", desSub:"Start from a ready build, change any part in Aquaflask colors, then pick your size.",
   tip:"Tip: tap the jacket to pick a part",
   nightNote:"Night view: the reflective trim lights up under headlights.",
-  s1:"Pick a ready build", s1sub:"The fastest way to start, from ₱2,800. You can change any part in step 2.",
+  s1:"Pick a ready build", s1sub:"The fastest way to start. Every build is ₱2,999, and you can change any part in step 2.",
   quizOpen:"Not sure? Take the 3-question quiz", quizClose:"Close quiz",
   q1:"When do you usually ride?", q2:"What's your style?", q3:"Which Aquaflask colors do you usually pick?",
   o_commute:"Daily commute", o_weekend:"Long weekend rides", o_night:"Night rides after work",
   o_classic:"Classic and low-key", o_bold:"Bright and stand-out",
   o_greys:"Black and greys", o_blues:"Blues and teals", o_greens:"Greens", o_pinks:"Pinks and purples", o_warm:"Orange, coral or yellow",
   match:"Your match:", useBuild:"Use this build",
-  n_commute:"For daily commutes, we picked the Rider Bundle so you get a matching bottle for the road.",
+  n_commute:"For daily commutes, we picked the Cooling Duo so you get a matching bottle for the road.",
   n_weekend:"For long rides, we picked the Cool Season Bundle with spare gel packs.",
   n_night:"Since you ride at night, we switched on Night view so you can see the reflective trim.",
   tabClassic:"Classic & dark", tabBold:"Bright & bold",
-  s2:"Change a part (optional)", s2sub:"Choose a part, then tap a color. Custom colors add ₱200.",
+  s2:"Change a part (optional)", s2sub:"Choose a part, then tap a color. Custom colors cost the same.",
   groupDark:"Classic darks", groupBright:"Signature brights",
-  shuffle:"Surprise me", reset:"Start over", backNote:"(shown in Inside view)",
+  shuffle:"Surprise me", reset:"Start over", backNote:"(shown on the back view)",
   s3:"Pick your size", s3sub:"Tap your size. Not sure? Use the size guide.",
   guideOpen:"Find my size", guideClose:"Hide size guide",
   height:"Height (cm)", chest:"Chest (cm)", chestTip:"Measure around the widest part of your chest.",
@@ -778,7 +802,7 @@ en:{
   useSize:"Use size {s}", chartSize:"Size", chartChest:"Chest (cm)", chartNote:"Proposed size chart for the concept.",
   toDeals:"Next: see deals",
   dealEyebrow:"Deals", dealTitle:"Pick your bundle", dealSub:"Bundles save you money, and the bottle comes in your build's colors.",
-  t_jacket:"Aquacool jacket", t_rider:"Jacket + matching bottle", t_season:"Jacket + bottle + spare gel pack set",
+  t_jacket:"Aquacool jacket", t_rider:"Jacket + matching bottle: the cool pair", t_season:"Jacket + bottle + a spare pair of gel packs",
   saveAmt:"Save ₱{n}", popular:"Most popular", wasPrice:"₱{n} separately",
   yourBottle:"Your bottle", styleBottle:"Wide-mouth bottle", styleTumbler:"Tumbler with handle",
   bSize:"Size", bLid:"Lid", bColor:"Bottle color", bLidColor:"Lid color",
@@ -788,26 +812,53 @@ en:{
   savedLabel:"My saved builds", savedEmpty:"Builds you save will show up here.",
   orderTitle:"Your order", lnBuild:"Build", lnSize:"Size", lnBundle:"Bundle", lnBottle:"Bottle", lnSave:"You save", total:"Total",
   buyNow:"Buy now", seeDeals:"See deals",
-  payNote:"Pay with GCash, credit card (0% installment for 3 or 6 months), or cash on delivery. Free delivery nationwide.",
+  payNote:"Pay with GCash, credit or debit card, or cash on delivery. Free delivery nationwide.",
   editBuild:"Edit my design",
   mTitle:"Checkout (demo)", mNote:"This is a concept demo. No payment is taken.",
-  payLabel:"Payment method", pay_gcash:"GCash", pay_card:"Credit card, 0% installment", pay_cod:"Cash on delivery", pay_booth:"Pay and pick up at a pop-up booth",
+  payLabel:"Payment method", pay_gcash:"GCash", pay_card:"Credit or debit card", pay_cod:"Cash on delivery", pay_booth:"Pay and pick up at a pop-up booth",
   placeOrder:"Place order", mBack:"Back",
   toastOrdered:"Order placed (demo): {b}, size {s}, {t} for ₱{p} via {pay}. Thank you for riding cool!",
   boothEyebrow:"Find us", boothTitle:"Pop-up booths near you",
+  findTitle:"Where to find us", findSub:"Try Aquacool in person before you buy: ride it at a moto convention, or try it on at a mall near you.",
+  ratTitle:"Ride and Try at moto conventions", ratSub:"Try the jacket on, take the Cooling Challenge, then test it on a supervised ride, out in the real heat.",
+  evTag:"Proposed partner event", ev1d:"February 2027", ev1p:"National motorcycle club convention · Venue to be announced", ev2d:"May 2027", ev2p:"Gamuda Gardens, Laguna · Test-ride route on site",
+  tg_cc:"Cooling Challenge", tg_ride:"Supervised test ride",
+  zTitle:"What happens at the booth",
+  z1t:"Product display and try-on", z1d:"Check the fit, the armor and the materials up close.",
+  z2t:"Product comparison", z2d:"A regular riding jacket next to Aquacool, side by side.",
+  z3t:"Demo area", z3d:"See how the gel packs, PCM panels and vents work together.",
+  z4t:"Cooling Challenge", z4d:"Wear both jackets and feel which one stays cooler.",
+  z5t:"Supervised test ride", z5d:"Ride outdoors with a guide, where the booth's aircon can't help. Then share your feedback.",
+  regTitle:"Register for a test ride", regSub:"Save your slot before the event. Registered riders get early-access deals.",
+  rName:"Your name", rEvent:"Event", rBike:"Your motorcycle", rEarly:"Send me early-access deals", rSubmit:"Register for a test ride",
+  rNote:"Demo form for the concept. Nothing is sent.", rAnyMall:"Any mall pop-up booth", rOther:"Other",
+  rNeedName:"Enter your name so we can save your slot.",
+  rDone:"You're registered (demo), {n}! See you at {e}. Bring your helmet and driver's license for the test ride.",
+  mallTitle:"Mall pop-up booths",
+  womEyebrow:"Word of mouth", womTitle:"Turning rides into conversations",
+  womSub:"After every test ride, riders and moto-vloggers share their experience. These sample quotes show the kind of feedback Ride and Try aims to collect. They are not real reviews.",
+  sampleTag:"Sample quote",
+  q1t:"\u201cStuck on EDSA for 40 minutes and my back stayed dry. The gel packs really make a difference.\u201d", q1w:"Sample · daily commuter on a Honda Click 125",
+  q2t:"\u201cI thought it was just for looks, but it has shoulder and elbow armor. Sulit for \u20b12,999.\u201d", q2w:"Sample · moto-vlogger first impression after a test ride",
+  q3t:"\u201cI matched it to my Aquaflask. So many people asked where I got it.\u201d", q3w:"Sample · rider who matched it to their Aquaflask",
   boothSub:"Try on Aquacool, feel the gel packs, and watch the heat test live. Proposed schedule for the concept.",
-  r_all:"All", r_mm:"Metro Manila", r_luz:"Luzon", r_vis:"Visayas", r_min:"Mindanao",
+  r_all:"All", r_north:"North", r_central:"Central", r_south:"South",
   tg_try:"Try-on", tg_heat:"Live heat test", tg_chill:"Gel pack chilling station",
   st_next:"Next stop", st_now:"Happening now", st_soon:"Upcoming", st_done:"Ended",
   hours:"10 AM – 9 PM", openMap:"Open in Google Maps",
-  alwaysTitle:"Also available at launch", alwaysText:"Selected Aquaflask stores and partner motorcycle gear shops nationwide.",
+  wtbTitle:"Where to buy, all year round", wtbSub:"The pop-up booths are for trying it on. Here's where you can buy Aquacool anytime.",
+  chNow:"Pre-order now", chLaunch:"At launch", chLater:"Coming soon",
+  ch1t:"Aquacool website", ch1d:"The only place to design your own colors. Pre-order a ready build or a custom one, with bottle bundles.", ch1cta:"Design yours",
+  ch2t:"Official online stores", ch2d:"Aquaflask's official website, plus the official Aquaflask stores on Shopee and Lazada. Great for payday sales.", ch2tip:"Look for the official store badge so you get a genuine jacket.",
+  ch3t:"Selected Aquaflask stores", ch3d:"Try it on, see the colors in person, and pick up a matching bottle in the same trip.",
+  ch4t:"Partner moto gear shops", ch4d:"Find Aquacool at partner motorcycle gear shops, right next to the helmets and gloves you already shop for.",
   zone_shell:"PU leather body", zone_sleeves:"Sleeves", zone_pcm:"Cooling panels", zone_gel:"Gel pockets", zone_armor:"Armor pads", zone_accent:"Trim & zips",
   hint_shell:"PU leather outer shell. Lightweight and easy to wipe clean, with zipper vents for airflow.",
   hint_sleeves:"PU leather sleeves lined with moisture-wicking PET mesh that stays comfortable on long rides.",
-  hint_pcm:"PCM cooling panels sit hidden inside the jacket. You'll see a peek of this color through the zipper vents.",
-  hint_gel:"Two removable gel packs in the back lining. Chill them in the fridge, then slip them in.",
+  hint_pcm:"PCM thermal panels on the chest, sides and back soak up extra body heat.",
+  hint_gel:"Two removable gel pockets on the upper back. Chill them in the fridge, then slip them in.",
   hint_armor:"Shoulder and elbow armor for impact protection.",
-  hint_accent:"Collar trim, piping, zipper pulls, cuffs and waist tabs. Reflective at night.",
+  hint_accent:"Collar trim, cuffs, shoulder marks, waist tabs and back zipper vents. Reflective at night.",
   sub:"{shell} leather · {pcm} cooling panels · size {size}", subBottle:" · {c} {s} {st}",
   priceNote:"{t} · proposed price", custom:"Custom: {a} & {b}",
   toastLoaded:"{n} loaded. Change any part, or skip ahead to deals.", toastRandom:"New random build. Tap any part to adjust it.",
@@ -834,14 +885,13 @@ en:{
 },
 fil:{
   concept:"<strong>Konsepto ng estudyante.</strong> Ang Aquacool ay isang proposed brand extension para sa isang marketing class project. Hindi ito opisyal na produkto o website ng Aquaflask.",
-  day:"Araw", night:"Gabi", front:"Harap", back:"Likod", inside:"Loob",
-  insideNote:"Loob ng jacket: ang mga cooling layer na nakatago sa ilalim ng PU leather.",
-  tabBuild:"Idisenyo ang jacket mo", tabAbout:"Tungkol sa Aquacool",
-  lnDesign:"Kulay", readyBuild:"Ready build", customBuild:"Custom na kulay (+₱200)",
+  day:"Araw", night:"Gabi", front:"Harap", back:"Likod",
+  tabBuild:"Idisenyo ang jacket mo", tabAbout:"Tungkol sa Aquacool", tabEvents:"Events at Stores", tabBuildS:"Disenyo", tabAboutS:"Tungkol", tabEventsS:"Events",
+  lnDesign:"Kulay", readyBuild:"Ready build", customBuild:"Custom na kulay",
   navProduct:"Produkto", navDesign:"Disenyo", navDeals:"Deals", navBooths:"Hanapin kami",
   heroEyebrow:"Bago mula sa Aquaflask (konsepto)",
   heroLede:"Pinapanatili naming malamig ang inumin mo. Ngayon, ikaw naman. Ang Aquacool ay PU leather riding jacket na may built-in cooling, gawa para sa mainit na biyahe sa Pilipinas.",
-  fact1:"PU leather shell", fact2:"PCM cooling panels", fact3:"Removable gel packs", fact4:"Mula ₱2,800",
+  fact1:"PU leather shell", fact2:"PCM cooling panels", fact3:"Removable gel packs", fact4:"₱2,999",
   ctaDesign:"Idisenyo ang sa'yo", ctaBuy:"Bilhin na",
   heroCap:"Nakikita: <strong>{n}</strong>. I-tap ang jacket para i-customize.",
   prodEyebrow:"Ang produkto", prodTitle:"Apat na layer ng lamig",
@@ -852,31 +902,31 @@ fil:{
   L4t:"Moisture-wicking PET mesh lining", L4d:"Presko at komportable sa balat. Hinihigop ang pawis para hindi dumikit ang jacket.",
   featGel:"Removable gel pockets", featGelD:"Dalawang gel pack sa itaas ng likod, kung saan pinakamainit.",
   gel1:"Palamigin ang packs sa ref o freezer.", gel2:"Isingit sa mga bulsa sa likod.", gel3:"Palitan ng bago sa long rides.",
-  featPcm:"PCM cooling panels", featPcmD:"Nakatago sa ilalim ng PU leather sa dibdib, gilid at likod, malayo sa armor, kaya malamig ka nang hindi nababawasan ang proteksyon.",
-  featVent:"Zippered vents", featVentD:"Pumapasok ang malamig na hangin sa dalawang vent sa harap habang nagra-ride. Lumalabas ang mainit at maalinsangang hangin sa dalawang vent sa likod.",
+  featPcm:"PCM cooling panels", featPcmD:"Nasa itaas ng dibdib, gilid at likod, malayo sa armor, kaya malamig ka nang hindi nababawasan ang proteksyon.",
+  featVent:"Rear zipper vents", featVentD:"Buksan ang dalawang vent sa likod para lumabas ang mainit at maalinsangang hangin habang nagra-ride.",
   featArmor:"Armor sa balikat at siko", featArmorD:"Proteksyon sa impact kung saan pinakakailangan ng rider, nakabaon sa jacket.",
   featReflect:"Reflective trim", featReflectD:"Tumatama ang ilaw ng headlight sa trim, shoulder marks at vents kapag gabi. I-click ang Gabi sa itaas para makita.",
-  cmpTitle:"Tingnan ang pagkakaiba", cmpSub:"I-drag ang slider para makita kung gaano kainit sa loob ng bawat jacket habang tumatagal ang ride mo sa tanghaling-tapat.",
+  cmpTitle:"Ramdamin ang pagkakaiba", cmpSub:"I-drag ang slider para makita kung gaano kainit sa loob ng bawat jacket habang tumatagal ang ride mo sa tanghaling-tapat.",
   regular:"Ordinaryong leather jacket", timeLabel:"Tagal ng ride sa ilalim ng araw:", mins:"{m} minuto", min1:"1 minuto",
   diff:"Mas malamig ang Aquacool nang {d}°C", diff0:"Pareho sa simula. Simulan na ang ride.", cool:"Malamig", hot:"Mainit",
   fine:"Halimbawang numero lang batay sa kung paano sumisipsip ng init ang PCM panels at gel packs. Hindi ito resulta ng lab test.",
   desEyebrow:"Disenyo", desTitle:"Gawin mong sa'yo", desSub:"Magsimula sa ready build, palitan ang kahit anong parte gamit ang kulay ng Aquaflask, tapos piliin ang size mo.",
   tip:"Tip: i-tap ang jacket para pumili ng parte",
   nightNote:"Night view: umiilaw ang reflective trim kapag tinamaan ng headlight.",
-  s1:"Pumili ng ready build", s1sub:"Pinakamabilis na paraan, mula ₱2,800. Puwede mong palitan ang kahit anong parte sa step 2.",
+  s1:"Pumili ng ready build", s1sub:"Pinakamabilis na paraan. ₱2,999 ang bawat build, at puwede mong palitan ang kahit anong parte sa step 2.",
   quizOpen:"Hindi sigurado? Sagutan ang 3-tanong na quiz", quizClose:"Isara ang quiz",
   q1:"Kailan ka madalas mag-ride?", q2:"Ano ang style mo?", q3:"Anong kulay ng Aquaflask ang madalas mong piliin?",
   o_commute:"Araw-araw na biyahe", o_weekend:"Long ride tuwing weekend", o_night:"Gabi, pauwi galing trabaho",
   o_classic:"Classic at simple", o_bold:"Makulay at agaw-pansin",
   o_greys:"Itim at gray", o_blues:"Asul at teal", o_greens:"Berde", o_pinks:"Pink at purple", o_warm:"Orange, coral o dilaw",
   match:"Bagay sa'yo:", useBuild:"Gamitin ang build na ito",
-  n_commute:"Para sa araw-araw na biyahe, pinili namin ang Rider Bundle para may katernong bottle ka sa daan.",
+  n_commute:"Para sa araw-araw na biyahe, pinili namin ang Cooling Duo para may katernong bottle ka sa daan.",
   n_weekend:"Para sa long rides, pinili namin ang Cool Season Bundle na may extra gel packs.",
   n_night:"Dahil gabi ka nagra-ride, binuksan namin ang Night view para makita mo ang reflective trim.",
   tabClassic:"Classic at dark", tabBold:"Makulay at bold",
-  s2:"Palitan ang parte (optional)", s2sub:"Pumili ng parte, tapos i-tap ang kulay. Dagdag ₱200 ang custom na kulay.",
+  s2:"Palitan ang parte (optional)", s2sub:"Pumili ng parte, tapos i-tap ang kulay. Walang dagdag na bayad ang custom na kulay.",
   groupDark:"Mga dark na kulay", groupBright:"Mga matingkad na kulay",
-  shuffle:"Bahala ka na", reset:"Ulitin mula simula", backNote:"(makikita sa Loob na view)",
+  shuffle:"Bahala ka na", reset:"Ulitin mula simula", backNote:"(makikita sa likod)",
   s3:"Piliin ang size mo", s3sub:"I-tap ang size mo. Hindi sigurado? Gamitin ang size guide.",
   guideOpen:"Hanapin ang size ko", guideClose:"Itago ang size guide",
   height:"Tangkad (cm)", chest:"Sukat ng dibdib (cm)", chestTip:"Sukatin ang pinakamalapad na bahagi ng dibdib mo.",
@@ -886,7 +936,7 @@ fil:{
   useSize:"Gamitin ang size {s}", chartSize:"Size", chartChest:"Dibdib (cm)", chartNote:"Proposed na size chart para sa konsepto.",
   toDeals:"Susunod: tingnan ang deals",
   dealEyebrow:"Deals", dealTitle:"Piliin ang bundle mo", dealSub:"Mas tipid sa bundle, at terno pa ang bottle sa kulay ng build mo.",
-  t_jacket:"Aquacool jacket", t_rider:"Jacket + katernong bottle", t_season:"Jacket + bottle + extra na gel pack set",
+  t_jacket:"Aquacool jacket", t_rider:"Jacket + katernong bottle: ang cool na tandem", t_season:"Jacket + bottle + extra na pares ng gel packs",
   saveAmt:"Tipid ₱{n}", popular:"Pinakasikat", wasPrice:"₱{n} kung hiwalay",
   yourBottle:"Ang bottle mo", styleBottle:"Wide-mouth bottle", styleTumbler:"Tumbler na may hawakan",
   bSize:"Size", bLid:"Takip", bColor:"Kulay ng bottle", bLidColor:"Kulay ng takip",
@@ -896,26 +946,53 @@ fil:{
   savedLabel:"Mga na-save kong build", savedEmpty:"Lalabas dito ang mga build na na-save mo.",
   orderTitle:"Ang order mo", lnBuild:"Build", lnSize:"Size", lnBundle:"Bundle", lnBottle:"Bottle", lnSave:"Natipid mo", total:"Kabuuan",
   buyNow:"Bilhin na", seeDeals:"Tingnan ang deals",
-  payNote:"Magbayad gamit ang GCash, credit card (0% installment sa 3 o 6 na buwan), o cash on delivery. Libreng delivery sa buong bansa.",
+  payNote:"Magbayad gamit ang GCash, credit o debit card, o cash on delivery. Libreng delivery sa buong bansa.",
   editBuild:"Baguhin ang disenyo ko",
   mTitle:"Checkout (demo)", mNote:"Demo lang ito ng konsepto. Walang totoong bayad na kukunin.",
-  payLabel:"Paraan ng pagbabayad", pay_gcash:"GCash", pay_card:"Credit card, 0% installment", pay_cod:"Cash on delivery", pay_booth:"Magbayad at kunin sa pop-up booth",
+  payLabel:"Paraan ng pagbabayad", pay_gcash:"GCash", pay_card:"Credit o debit card", pay_cod:"Cash on delivery", pay_booth:"Magbayad at kunin sa pop-up booth",
   placeOrder:"I-place ang order", mBack:"Bumalik",
   toastOrdered:"Na-place ang order (demo): {b}, size {s}, {t} sa halagang ₱{p} gamit ang {pay}. Salamat sa pag-ride nang cool!",
   boothEyebrow:"Hanapin kami", boothTitle:"Mga pop-up booth na malapit sa'yo",
+  findTitle:"Saan kami makikita", findSub:"Subukan muna ang Aquacool bago bumili: i-test ride sa moto convention, o isukat sa mall na malapit sa'yo.",
+  ratTitle:"Ride and Try sa mga moto convention", ratSub:"Isukat ang jacket, sumali sa Cooling Challenge, tapos i-test ride ito nang may gabay, sa totoong init sa labas.",
+  evTag:"Proposed na partner event", ev1d:"Pebrero 2027", ev1p:"Pambansang convention ng mga motorcycle club · Iaanunsyo pa ang venue", ev2d:"Mayo 2027", ev2p:"Gamuda Gardens, Laguna · May test-ride route sa venue",
+  tg_cc:"Cooling Challenge", tg_ride:"Test ride na may gabay",
+  zTitle:"Ano'ng mangyayari sa booth",
+  z1t:"Product display at sukatan", z1d:"Tingnan nang malapitan ang fit, armor at materyales.",
+  z2t:"Product comparison", z2d:"Ordinaryong riding jacket katabi ng Aquacool.",
+  z3t:"Demo area", z3d:"Alamin kung paano nagtutulungan ang gel packs, PCM panels at vents.",
+  z4t:"Cooling Challenge", z4d:"Isuot ang dalawang jacket at ramdamin kung alin ang mas malamig.",
+  z5t:"Test ride na may gabay", z5d:"Mag-ride sa labas kasama ang guide, kung saan walang aircon ng booth. Tapos, ibahagi ang feedback mo.",
+  regTitle:"Mag-register para sa test ride", regSub:"I-reserve na ang slot mo bago ang event. May early-access deals ang mga naka-register.",
+  rName:"Pangalan mo", rEvent:"Event", rBike:"Motor mo", rEarly:"Padalhan ako ng early-access deals", rSubmit:"Mag-register para sa test ride",
+  rNote:"Demo form para sa konsepto. Walang ipapadala.", rAnyMall:"Kahit anong mall pop-up booth", rOther:"Iba pa",
+  rNeedName:"Ilagay ang pangalan mo para ma-save ang slot mo.",
+  rDone:"Registered ka na (demo), {n}! Kita tayo sa {e}. Dalhin ang helmet at driver's license mo para sa test ride.",
+  mallTitle:"Mga pop-up booth sa mall",
+  womEyebrow:"Word of mouth", womTitle:"Mula sa ride, nagiging kuwentuhan",
+  womSub:"Pagkatapos ng bawat test ride, ibinabahagi ng mga rider at moto-vlogger ang karanasan nila. Halimbawa lang ang mga quote na ito ng feedback na gustong makuha ng Ride and Try. Hindi ito totoong review.",
+  sampleTag:"Halimbawang quote",
+  q1t:"\u201cNa-stuck ako sa EDSA nang 40 minutes pero hindi basa ang likod ko. Iba talaga 'yung gel packs.\u201d", q1w:"Halimbawa · araw-araw na commuter na naka-Honda Click 125",
+  q2t:"\u201cAkala ko pang-porma lang, pero may armor pala sa balikat at siko. Sulit sa \u20b12,999.\u201d", q2w:"Halimbawa · first impression ng moto-vlogger pagkatapos ng test ride",
+  q3t:"\u201cTinerno ko sa Aquaflask ko 'yung kulay. Ang daming nagtanong kung saan ko nabili.\u201d", q3w:"Halimbawa · rider na tinerno ito sa Aquaflask niya",
   boothSub:"Isukat ang Aquacool, hawakan ang gel packs, at panoorin ang heat test nang live. Proposed na schedule para sa konsepto.",
-  r_all:"Lahat", r_mm:"Metro Manila", r_luz:"Luzon", r_vis:"Visayas", r_min:"Mindanao",
+  r_all:"Lahat", r_north:"Hilaga", r_central:"Gitna", r_south:"Timog",
   tg_try:"Sukatan", tg_heat:"Live na heat test", tg_chill:"Chilling station ng gel pack",
   st_next:"Susunod na stop", st_now:"Nangyayari ngayon", st_soon:"Paparating", st_done:"Tapos na",
   hours:"10 AM – 9 PM", openMap:"Buksan sa Google Maps",
-  alwaysTitle:"Mabibili rin sa launch", alwaysText:"Sa piling Aquaflask stores at partner na motorcycle gear shops sa buong bansa.",
+  wtbTitle:"Saan mabibili, buong taon", wtbSub:"Ang pop-up booths ay para masukat mo ito. Dito mo naman mabibili ang Aquacool kahit kailan.",
+  chNow:"Mag-pre-order na", chLaunch:"Sa launch", chLater:"Malapit na",
+  ch1t:"Aquacool website", ch1d:"Dito lang puwedeng idisenyo ang sarili mong kulay. Mag-pre-order ng ready build o custom, may bottle bundles pa.", ch1cta:"Idisenyo ang sa'yo",
+  ch2t:"Official online stores", ch2d:"Ang official website ng Aquaflask, at ang official Aquaflask stores sa Shopee at Lazada. Sulit tuwing payday sale.", ch2tip:"Hanapin ang official store badge para siguradong original ang jacket mo.",
+  ch3t:"Piling Aquaflask stores", ch3d:"Isukat, tingnan ang mga kulay nang personal, at bumili na rin ng katernong bottle.",
+  ch4t:"Partner na moto gear shops", ch4d:"Makikita ang Aquacool sa partner na motorcycle gear shops, katabi ng mga helmet at gloves na binibili mo.",
   zone_shell:"PU leather na katawan", zone_sleeves:"Manggas", zone_pcm:"Cooling panels", zone_gel:"Gel pockets", zone_armor:"Armor pads", zone_accent:"Trim at zipper",
   hint_shell:"PU leather na outer shell. Magaan at madaling punasan, may zipper vents para pumasok ang hangin.",
   hint_sleeves:"PU leather na manggas na may moisture-wicking PET mesh lining, komportable kahit long ride.",
-  hint_pcm:"Nakatago sa loob ng jacket ang PCM cooling panels. Makikita mo nang kaunti ang kulay na ito sa zipper vents.",
-  hint_gel:"Dalawang removable gel pack sa lining ng likod. Palamigin sa ref, tapos isingit.",
+  hint_pcm:"Ang PCM thermal panels sa dibdib, gilid at likod ay sumisipsip ng sobrang init ng katawan.",
+  hint_gel:"Dalawang removable gel pockets sa itaas ng likod. Palamigin sa ref, tapos isingit.",
   hint_armor:"Armor sa balikat at siko para proteksyon sa impact.",
-  hint_accent:"Collar trim, piping, zipper pulls, cuffs at waist tabs. Reflective sa gabi.",
+  hint_accent:"Collar trim, cuffs, shoulder marks, waist tabs at back zipper vents. Reflective sa gabi.",
   sub:"{shell} na leather · {pcm} na cooling panels · size {size}", subBottle:" · {c} na {st}, {s}",
   priceNote:"{t} · proposed na presyo", custom:"Custom: {a} at {b}",
   toastLoaded:"Na-load ang {n}. Palitan ang kahit anong parte, o dumiretso sa deals.", toastRandom:"Bagong random build. I-tap ang kahit anong parte para baguhin.",
@@ -955,7 +1032,7 @@ const BRIGHTS = [
   ["Bubblegum","#FF8AC6"],["Coral","#FF6F61"],["Tangerine","#FF9F3F"],["Sunshine","#FFD84A"],["Lime","#B6E35A"],["Cloud","#F5F7FA"]
 ];
 const HEX = Object.fromEntries(DARKS.concat(BRIGHTS));
-const ZONES = [["shell","front"],["sleeves","front"],["pcm","front"],["gel","inside"],["armor","front"],["accent","front"]];
+const ZONES = [["shell","front"],["sleeves","front"],["pcm","front"],["gel","back"],["armor","front"],["accent","front"]];
 const zoneName = k => t("zone_"+k);
 const PRESETS = [
   {g:"classic",n:"Original Black",d:"d_original",s:{shell:"Black",sleeves:"Black",pcm:"Aqua",gel:"Cobalt",armor:"Black",accent:"Aqua"}},
@@ -970,13 +1047,13 @@ const PRESETS = [
   {g:"bold",n:"Black & Lime",d:"d_lime",s:{shell:"Black",sleeves:"Black",pcm:"Lime",gel:"Cobalt",armor:"Charcoal",accent:"Lime"}},
   {g:"bold",n:"Cobalt Blue",d:"d_cobalt",s:{shell:"Cobalt",sleeves:"Navy",pcm:"Sky",gel:"Aqua",armor:"Black",accent:"Cloud"}}
 ];
-// team price range ₱2,800–3,000: ready builds ₱2,800, custom colors ₱3,000
-// proposed add-ons: bottle ₱1,000 · spare gel pack set ₱500
-const JACKET_READY = 2800, JACKET_CUSTOM = 3000;
+// jacket price: ₱2,999 for every build (ready or custom)
+// proposed add-ons: bottle ₱1,000 · spare pair of gel packs ₱500
+const JACKET_READY = 2999, JACKET_CUSTOM = 2999;
 const jacketPrice = () => presetName ? JACKET_READY : JACKET_CUSTOM;
 const TIERS = [
   {id:"jacket", n:"Jacket only", items:"t_jacket", add:0, fullAdd:0, bottle:false},
-  {id:"rider", n:"Rider Bundle", items:"t_rider", add:800, fullAdd:1000, bottle:true, popular:true},
+  {id:"rider", n:"Cooling Duo", items:"t_rider", add:800, fullAdd:1000, bottle:true, popular:true},
   {id:"season", n:"Cool Season Bundle", items:"t_season", add:1200, fullAdd:1500, bottle:true}
 ].map(x=>Object.defineProperties(x,{price:{get(){return jacketPrice()+x.add;}}, full:{get(){return jacketPrice()+x.fullAdd;}}}));
 const SIZES = [["XS",86,91],["S",92,97],["M",98,103],["L",104,109],["XL",110,116],["2XL",117,123],["3XL",124,130]];
@@ -985,6 +1062,15 @@ const QUIZ_MAP = {
   classic:{greys:"Original Black",blues:"Navy Patrol",greens:"Olive Tactical",pinks:"Burgundy Heritage",warm:"Espresso Rider"},
   bold:{greys:"Black & Lime",blues:"Cobalt Blue",greens:"Mint Commute",pinks:"Lilac Cruise",warm:"Sunset Ride"}
 };
+// proposed pop-up booth schedule (concept)
+const BOOTHS = [
+  {r:"north", mall:"Ayala Malls Vertis North", city:"Quezon City", spot:"Activity Center", s:"2027-03-05", e:"2027-03-07"},
+  {r:"south", mall:"Festival Mall", city:"Alabang, Muntinlupa City", spot:"Main Atrium", s:"2027-03-12", e:"2027-03-14"},
+  {r:"central", mall:"Glorietta 2", city:"Makati City", spot:"Activity Center", s:"2027-03-19", e:"2027-03-21"},
+  {r:"north", mall:"SM City Fairview", city:"Quezon City", spot:"Main Atrium", s:"2027-04-02", e:"2027-04-04"},
+  {r:"south", mall:"SM Mall of Asia", city:"Pasay City", spot:"Main Mall Atrium", s:"2027-04-09", e:"2027-04-11"},
+  {r:"central", mall:"SM Megamall", city:"Mandaluyong City", spot:"Mega Atrium", s:"2027-04-16", e:"2027-04-18"}
+];
 const LAYERS = [
   {k:"L1", zone:"shell", pat:"pGrain"},
   {k:"L2", zone:"pcm", pat:"pHex"},
@@ -1086,7 +1172,8 @@ function cloneJacket(v){
   c.removeAttribute("id");
   c.querySelector("defs")?.remove();
   c.querySelectorAll(".active").forEach(e=>e.classList.remove("active"));
-  ["front","back","inside"].forEach(n=>c.querySelector("#"+n).setAttribute("display", v===n?"inline":"none"));
+  c.querySelector("#front").setAttribute("display", v==="front"?"inline":"none");
+  c.querySelector("#back").setAttribute("display", v==="back"?"inline":"none");
   c.querySelectorAll("[id]").forEach(e=>e.removeAttribute("id"));
   c.setAttribute("aria-label", `Aquacool jacket, ${v} view`);
   return c;
@@ -1131,9 +1218,9 @@ $("layerSvg").addEventListener("click",e=>{const g=e.target.closest(".slab"); if
 // ================= VIEW / MODE / LANGUAGE =================
 function setView(v){
   view=v;
-  ["front","back","inside"].forEach(n=>$(n).setAttribute("display", v===n ? "inline" : "none"));
-  $("viewFront").setAttribute("aria-pressed", v==="front"); $("viewBack").setAttribute("aria-pressed", v==="back"); $("viewInside").setAttribute("aria-pressed", v==="inside");
-  $("insideNote").hidden = v!=="inside";
+  $("front").setAttribute("display", v==="front" ? "inline" : "none");
+  $("back").setAttribute("display", v==="back" ? "inline" : "none");
+  $("viewFront").setAttribute("aria-pressed", v==="front"); $("viewBack").setAttribute("aria-pressed", v==="back");
 }
 let night=false;
 try{ night = window.matchMedia("(prefers-color-scheme: dark)").matches; }catch(e){}
@@ -1170,7 +1257,7 @@ function render(){
   document.querySelectorAll(".tab[data-g]").forEach(x=>x.setAttribute("aria-pressed", x.dataset.g===group));
   $("zones").innerHTML = ZONES.map(([k])=>`<button class="zone" data-k="${k}" aria-pressed="${k===active}"><i style="background:${HEX[state[k]]}"></i>${zoneName(k)}</button>`).join("");
   const z = ZONES.find(z=>z[0]===active);
-  $("zoneHint").innerHTML = `<strong>${zoneName(active)}:</strong> ${t("hint_"+active)}${z[1]==="inside"?` <em>${t("backNote")}</em>`:""}`;
+  $("zoneHint").innerHTML = `<strong>${zoneName(active)}:</strong> ${t("hint_"+active)}${z[1]==="back"?` <em>${t("backNote")}</em>`:""}`;
   $("swDark").innerHTML = swatchHTML(DARKS);
   $("swBright").innerHTML = swatchHTML(BRIGHTS);
   $("sizes").innerHTML = SIZES.map(([s])=>`<button class="tab" data-size="${s}" aria-pressed="${s===size}">${s}</button>`).join("");
@@ -1180,7 +1267,7 @@ function render(){
   $("price").innerHTML = `₱${peso(curTier().price)}<small>${t("priceNote",{t:curTier().n})}</small>`;
   // order summary
   const T0=curTier();
-  const lines = [[t("lnBuild"),buildName()],[t("lnDesign"),presetName?t("readyBuild"):t("customBuild")],[t("lnSize"),size],[t("lnBundle"),T0.n],[t("lnBottle"),hasBottle()?bottleLabel():t("noBottle")]];
+  const lines = [[t("lnBuild"),buildName()],[t("lnSize"),size],[t("lnBundle"),T0.n],[t("lnBottle"),hasBottle()?bottleLabel():t("noBottle")]];
   if(T0.full>T0.price) lines.push([t("lnSave"),"₱"+peso(T0.full-T0.price)]);
   const dl = lines.map(([a,b])=>`<div><dt>${a}</dt><dd>${b}</dd></div>`).join("");
   $("orderLines").innerHTML = dl; $("mLines").innerHTML = dl;
@@ -1196,7 +1283,7 @@ function toast(msg, ms=4500){
 $("toast").addEventListener("click",()=>{$("toast").hidden=true;});
 function pickZone(k){
   active=k;
-  if(ZONES.find(z=>z[0]===k)[1]==="inside") setView("inside");
+  if(ZONES.find(z=>z[0]===k)[1]==="back") setView("back");
   render();
 }
 function loadPreset(name){
@@ -1206,7 +1293,6 @@ function loadPreset(name){
 // ================= EVENTS: builder =================
 $("viewFront").addEventListener("click",()=>setView("front"));
 $("viewBack").addEventListener("click",()=>setView("back"));
-$("viewInside").addEventListener("click",()=>setView("inside"));
 $("modeDay").addEventListener("click",()=>setNight(false));
 $("modeNight").addEventListener("click",()=>setNight(true));
 $("langEn").addEventListener("click",()=>setLang("en"));
@@ -1361,7 +1447,7 @@ function svgToImage(svgEl, v){
   const c=svgEl.cloneNode(true);
   c.querySelectorAll(".o").forEach(el=>{el.setAttribute("stroke","#0B0E11");el.setAttribute("stroke-width","3");el.setAttribute("stroke-linejoin","round");el.setAttribute("stroke-linecap","round");});
   c.querySelectorAll(".active").forEach(el=>el.classList.remove("active"));
-  if(v){ ["front","back","inside"].forEach(n=>c.querySelector("#"+n).setAttribute("display",v===n?"inline":"none")); }
+  if(v){ c.querySelector("#front").setAttribute("display",v==="front"?"inline":"none"); c.querySelector("#back").setAttribute("display",v==="back"?"inline":"none"); }
   c.removeAttribute("style");
   c.setAttribute("xmlns","http://www.w3.org/2000/svg");
   c.setAttribute("width","800"); c.setAttribute("height", String(Math.round(800*c.viewBox.baseVal.height/c.viewBox.baseVal.width)));
@@ -1413,8 +1499,7 @@ $("cardBtn").addEventListener("click",async()=>{
 // ================= MAIN TABS =================
 function showTab(name, push=true){
   document.querySelectorAll("[data-tab]").forEach(b=>b.setAttribute("aria-selected", b.dataset.tab===name));
-  $("panel-build").hidden = name!=="build";
-  $("panel-about").hidden = name!=="about";
+  ["build","about"].forEach(n=>{ $("panel-"+n).hidden = name!==n; });
   if(push){ try{ history.replaceState(null,"","#"+name); }catch(e){} }
 }
 document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>{ showTab(b.dataset.tab); window.scrollTo({top:0}); }));
